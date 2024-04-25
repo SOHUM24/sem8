@@ -8,7 +8,7 @@
 %load_ext nvcc4jupyter
 
 %%cuda
-#include 
+#include <iostream>
 using namespace std;
 
 __global__
@@ -64,7 +64,8 @@ int main() {
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
 
-    add<<>>(X, Y, Z, N);
+    add<<<blocksPerGrid, threadsPerBlock>>>(X, Y, Z, N);
+
 
     cudaMemcpy(C, Z, vectorBytes, cudaMemcpyDeviceToHost);
 
