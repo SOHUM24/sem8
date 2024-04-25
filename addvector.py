@@ -63,7 +63,7 @@ int main() {
 
     int threadsPerBlock = 256;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
-
+    //add<<>>(X, Y, Z, N);
     add<<<blocksPerGrid, threadsPerBlock>>>(X, Y, Z, N);
 
 
