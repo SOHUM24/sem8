@@ -94,7 +94,9 @@ int main() {
     dim3 blocks(BLOCKS, BLOCKS);
 
     // Launch kernel
-    multiply<<>>(X, Y, Z, N);
+    //multiply<<>>(X, Y, Z, N);
+    multiply<<<blocks, threads>>>(X, Y, Z, N);
+
 
     cudaMemcpy(C, Z, matrixBytes, cudaMemcpyDeviceToHost);
     cout << "Multiplication of matrix A and B: \n";
